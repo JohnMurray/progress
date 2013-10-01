@@ -1,0 +1,30 @@
+@(tasks: List[Task], taskForm: Form[String])
+
+@import helper._
+
+@main("Progress", tasks.size) {
+
+    <dl class="dl-horizontal">
+        @tasks.map { task =>
+            <dt>@task.name <a href=@routes.Application.deleteTask(task.id)>&#x00D7;</a></dt>
+            <dd>
+                <div class="col-lg-4 task-step">&nbsp;</div>
+                <div class="col-lg-4 task-step">&nbsp;</div>
+                <div class="col-lg-4 task-step">&nbsp;</div>
+            </dd>
+        }
+    </dl>
+
+    <br /><br />
+
+    <h2>Add a new task</h2>
+
+    <form class="form-inline" role="form" action=@routes.Application.newTask method="post">
+        <div class="form-group">
+            <label class="sr-only" for="name">Task Name</label>
+            <input class="form-control" type="text" id="name" name="name" placeholder="Task Name" />
+        </div>
+        <button class="btn btn-default">Create</button>
+    </form>
+
+}
